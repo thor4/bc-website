@@ -1,0 +1,95 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Button from '../components/Button.astro';
+---
+
+<MainLayout 
+  title="About"
+  description="Learn about Bryan Conklin's expertise in Generative AI, agentic systems, and computational neuroscience. AWS Solution Architect helping enterprises implement production-ready AI solutions."
+>
+  <!-- Hero Section -->
+  <section class="py-32 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold text-[var(--color-text-primary)] mb-6">
+          About Bryan
+        </h1>
+        <p class="text-xl text-[var(--color-text-secondary)] max-w-3xl mx-auto">
+          Gen AI Specialist Solution Architect at AWS, bridging the gap between cutting-edge AI research and real-world enterprise impact.
+        </p>
+      </div>
+
+      <!-- Main Content -->
+      <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+        <!-- Bio Content -->
+        <div>
+          <h2 class="text-2xl font-semibold text-[var(--color-text-primary)] mb-6">
+            Building AI Systems That Actually Work
+          </h2>
+          <div class="space-y-4 text-[var(--color-text-secondary)]">
+            <p>
+              I specialize in helping enterprises navigate the complex landscape of Generative AI, with a focus on agentic systems and computational neuroscience-inspired architectures.
+            </p>
+            <p>
+              At AWS, I work with Fortune 500 companies to design and implement production-ready AI solutions that deliver measurable business impact. My approach combines deep technical expertise with practical implementation experience.
+            </p>
+            <p>
+              My expertise spans multi-agent orchestration, neural network coordination, and the development of autonomous AI systems that can operate reliably at enterprise scale.
+            </p>
+          </div>
+        </div>
+
+        <!-- Skills/Expertise -->
+        <div>
+          <h3 class="text-xl font-semibold text-[var(--color-text-primary)] mb-6">
+            Core Expertise
+          </h3>
+          <div class="space-y-3">
+            <div class="flex items-center space-x-3">
+              <div class="w-2 h-2 bg-[var(--color-accent)] rounded-full"></div>
+              <span class="text-[var(--color-text-secondary)]">Agentic AI Systems</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="w-2 h-2 bg-[var(--color-accent)] rounded-full"></div>
+              <span class="text-[var(--color-text-secondary)]">Multi-Agent Orchestration</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="w-2 h-2 bg-[var(--color-accent)] rounded-full"></div>
+              <span class="text-[var(--color-text-secondary)]">Computational Neuroscience</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="w-2 h-2 bg-[var(--color-accent)] rounded-full"></div>
+              <span class="text-[var(--color-text-secondary)]">Enterprise AI Architecture</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="w-2 h-2 bg-[var(--color-accent)] rounded-full"></div>
+              <span class="text-[var(--color-text-secondary)]">Production ML Systems</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="w-2 h-2 bg-[var(--color-accent)] rounded-full"></div>
+              <span class="text-[var(--color-text-secondary)]">Cloud-Native AI Solutions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="text-center bg-[var(--color-bg-secondary)] p-8 rounded-lg">
+        <h3 class="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
+          Ready to Build Production AI?
+        </h3>
+        <p class="text-[var(--color-text-secondary)] mb-6 max-w-2xl mx-auto">
+          Let's discuss how agentic AI systems can transform your business operations and deliver measurable ROI.
+        </p>
+        <div class="space-x-4">
+          <Button variant="primary" href="/contact">
+            Get in Touch
+          </Button>
+          <Button variant="outline" href="/projects">
+            View Case Studies
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

@@ -1,0 +1,149 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import ArticleTeaser from '../components/ArticleTeaser.astro';
+import TagPill from '../components/TagPill.astro';
+
+// Sample articles data
+const articles = [
+  {
+    title: "The Agentic AI Layered Model: A New Framework for Enterprise Systems",
+    excerpt: "Introducing a comprehensive framework for building production-ready agentic AI systems, inspired by the OSI networking model. Learn how to architect autonomous agents that scale.",
+    readTime: "15 min read",
+    publishDate: "2024-12-20",
+    tags: ["Agentic AI", "Architecture", "Framework", "Enterprise"],
+    href: "/articles/agentic-ai-layered-model",
+    featured: true,
+    level: "advanced" as const,
+    audience: "technical" as const
+  },
+  {
+    title: "Why Your AI Strategy Needs Agents, Not Just Models",
+    excerpt: "Moving beyond passive AI models to autonomous agents that take action. Discover the business case for agentic AI and how it delivers 3-5x ROI compared to traditional automation.",
+    readTime: "8 min read", 
+    publishDate: "2024-12-15",
+    tags: ["Business Strategy", "ROI", "Autonomous Systems"],
+    href: "/articles/ai-strategy-needs-agents",
+    level: "beginner" as const,
+    audience: "business" as const
+  },
+  {
+    title: "Multi-Agent Communication Patterns in Production",
+    excerpt: "Deep dive into battle-tested communication patterns for coordinating multiple AI agents at scale. Includes performance benchmarks and implementation examples.",
+    readTime: "20 min read",
+    publishDate: "2024-12-10", 
+    tags: ["Multi-Agent", "Communication", "Patterns", "Production"],
+    href: "/articles/multi-agent-communication-patterns",
+    level: "advanced" as const,
+    audience: "technical" as const
+  },
+  {
+    title: "Building Resilient AI Agent Networks",
+    excerpt: "How to design fault-tolerant agent systems that gracefully handle failures and maintain service availability in production environments.",
+    readTime: "12 min read",
+    publishDate: "2024-12-05",
+    tags: ["Resilience", "Architecture", "Production"],
+    href: "/articles/resilient-ai-agent-networks",
+    level: "intermediate" as const,
+    audience: "technical" as const
+  },
+  {
+    title: "From Proof of Concept to Production: Scaling AI Agents",
+    excerpt: "A practical guide to taking AI agent prototypes from the lab to production, covering infrastructure, monitoring, and operational considerations.",
+    readTime: "18 min read",
+    publishDate: "2024-11-28",
+    tags: ["Scaling", "Production", "DevOps"],
+    href: "/articles/poc-to-production-ai-agents",
+    level: "intermediate" as const,
+    audience: "technical" as const
+  }
+];
+
+const featuredArticle = articles.find(article => article.featured);
+const regularArticles = articles.filter(article => !article.featured);
+---
+
+<MainLayout 
+  title="Articles"
+  description="Technical insights on Agentic AI, multi-agent systems, and computational neuroscience from Bryan Conklin. Deep dives into production AI architectures and implementation strategies."
+>
+  <!-- Hero Section -->
+  <section class="py-32 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-[var(--color-text-primary)] mb-6">
+        Technical Articles
+      </h1>
+      <p class="text-xl text-[var(--color-text-secondary)] max-w-3xl mx-auto mb-8">
+        Deep technical insights on agentic AI systems, multi-agent architectures, and production implementation strategies.
+      </p>
+      
+      <!-- Filter Tags -->
+      <div class="flex flex-wrap justify-center gap-2 mb-12">
+        <TagPill>All Articles</TagPill>
+        <TagPill>Agentic AI</TagPill>
+        <TagPill>Architecture</TagPill>
+        <TagPill>Production</TagPill>
+        <TagPill>Multi-Agent</TagPill>
+        <TagPill>Business Strategy</TagPill>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Article -->
+  {featuredArticle && (
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-secondary)]">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl font-semibold text-[var(--color-text-primary)] mb-2">
+            Featured Article
+          </h2>
+          <p class="text-[var(--color-text-secondary)]">
+            Latest deep dive into advanced AI architecture
+          </p>
+        </div>
+        
+        <div class="bg-[var(--color-bg-primary)] rounded-lg p-8 border border-[var(--color-border)]">
+          <ArticleTeaser {...featuredArticle} featured={true} />
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- All Articles -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-semibold text-[var(--color-text-primary)] mb-8">
+        All Articles
+      </h2>
+      
+      <div class="space-y-8">
+        {regularArticles.map((article) => (
+          <div class="border-b border-[var(--color-border)] pb-8 last:border-b-0 last:pb-0">
+            <ArticleTeaser {...article} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter CTA -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-secondary)]">
+    <div class="max-w-2xl mx-auto text-center">
+      <h3 class="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
+        Stay Updated
+      </h3>
+      <p class="text-[var(--color-text-secondary)] mb-6">
+        Get notified when new technical articles are published. Deep dives into AI architecture, implementation patterns, and production insights.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+        <input 
+          type="email" 
+          placeholder="your@email.com"
+          class="flex-1 px-4 py-2 bg-[var(--color-bg-primary)] border border-[var(--color-border)] rounded-lg text-[var(--color-text-primary)] placeholder-[var(--color-text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent"
+        />
+        <button class="px-6 py-2 bg-[var(--color-accent)] text-white font-medium rounded-lg hover:bg-[var(--color-accent-hover)] transition-colors duration-200">
+          Subscribe
+        </button>
+      </div>
+    </div>
+  </section>
+</MainLayout>

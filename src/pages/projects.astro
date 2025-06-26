@@ -1,0 +1,173 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Button from '../components/Button.astro';
+
+// Sample projects data
+const projects = [
+  {
+    title: "Autonomous Trading Agent for Energy Markets",
+    description: "Developed an agentic AI system that autonomously executes energy trades based on real-time market conditions, weather data, and demand forecasts.",
+    summary: "23% increase in trading profits, 90% reduction in manual monitoring, 15ms average decision time vs 2-3 minutes human response.",
+    technologies: ["Python", "AWS Lambda", "Kinesis", "Transformer Models", "Blockchain"],
+    metrics: [
+      { label: "Profit Increase", value: "23%" },
+      { label: "Decision Time", value: "15ms" },
+      { label: "ROI First Year", value: "380%" },
+      { label: "Uptime", value: "99.97%" }
+    ],
+    href: "/projects/autonomous-trading-agent",
+    featured: true,
+    status: "completed" as const
+  },
+  {
+    title: "Neural Network Orchestration Platform",
+    description: "Built a platform for coordinating multiple neural networks using computational neuroscience principles, enabling hierarchical decision-making across agent populations.",
+    summary: "Enables coordination of 100+ AI agents simultaneously with biologically-inspired communication protocols.",
+    technologies: ["Go", "PostgreSQL", "Redis", "PyTorch", "Kubernetes"],
+    metrics: [
+      { label: "Concurrent Agents", value: "100+" },
+      { label: "Latency", value: "<50ms" },
+      { label: "Throughput", value: "10K ops/sec" }
+    ],
+    href: "/projects/neural-orchestration-platform", 
+    status: "in-progress" as const
+  },
+  {
+    title: "Multi-Modal Customer Service Agent",
+    description: "Enterprise chatbot system that processes text, voice, and visual inputs to provide comprehensive customer support across multiple channels.",
+    summary: "Reduced customer service costs by 60% while improving satisfaction scores by 35% through intelligent routing and automated resolution.",
+    technologies: ["Node.js", "OpenAI API", "Whisper", "Computer Vision", "AWS"],
+    metrics: [
+      { label: "Cost Reduction", value: "60%" },
+      { label: "Satisfaction Increase", value: "35%" },
+      { label: "Resolution Rate", value: "78%" },
+      { label: "Response Time", value: "2.3s" }
+    ],
+    href: "/projects/multimodal-customer-service",
+    status: "completed" as const
+  },
+  {
+    title: "Distributed AI Training Infrastructure",
+    description: "Cloud-native platform for training large language models across multiple GPUs and regions with automatic fault tolerance and cost optimization.",
+    summary: "Reduced training costs by 45% while improving model training speed by 3x through intelligent resource allocation and scheduling.",
+    technologies: ["Kubernetes", "PyTorch", "Ray", "CUDA", "Terraform"],
+    metrics: [
+      { label: "Cost Reduction", value: "45%" },
+      { label: "Speed Improvement", value: "3x" },
+      { label: "GPU Utilization", value: "92%" },
+      { label: "Fault Recovery", value: "<30s" }
+    ],
+    href: "/projects/distributed-ai-training",
+    status: "completed" as const
+  }
+];
+---
+
+<MainLayout 
+  title="Projects"
+  description="Real-world AI implementations and case studies by Bryan Conklin. See how agentic AI systems deliver measurable business impact in production environments."
+>
+  <!-- Hero Section -->
+  <section class="py-32 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-[var(--color-text-primary)] mb-6">
+        Project Case Studies
+      </h1>
+      <p class="text-xl text-[var(--color-text-secondary)] max-w-3xl mx-auto mb-8">
+        Real-world implementations of agentic AI systems that deliver measurable business impact. From concept to production deployment.
+      </p>
+    </div>
+  </section>
+
+  <!-- Projects Grid -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid gap-8">
+        {projects.map((project, index) => (
+          <div class={`${index === 0 ? 'lg:col-span-2' : ''}`}>
+            <ProjectCard {...project} featured={index === 0} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Technologies Section -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-secondary)]">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-[var(--color-text-primary)] mb-4">
+          Technology Stack
+        </h2>
+        <p class="text-[var(--color-text-secondary)] max-w-2xl mx-auto">
+          I work with cutting-edge technologies to build scalable, production-ready AI solutions.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- AI/ML -->
+        <div class="text-center">
+          <h3 class="text-xl font-semibold text-[var(--color-text-primary)] mb-4">
+            AI & Machine Learning
+          </h3>
+          <div class="flex flex-wrap justify-center gap-2">
+            <span class="px-3 py-1 bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] rounded-full text-sm">PyTorch</span>
+            <span class="px-3 py-1 bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] rounded-full text-sm">TensorFlow</span>
+            <span class="px-3 py-1 bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] rounded-full text-sm">Transformers</span>
+            <span class="px-3 py-1 bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] rounded-full text-sm">LangChain</span>
+            <span class="px-3 py-1 bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] rounded-full text-sm">OpenAI API</span>
+          </div>
+        </div>
+
+        <!-- Cloud & Infrastructure -->
+        <div class="text-center">
+          <h3 class="text-xl font-semibold text-[var(--color-text-primary)] mb-4">
+            Cloud & Infrastructure
+          </h3>
+          <div class="flex flex-wrap justify-center gap-2">
+            <span class="px-3 py-1 bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] rounded-full text-sm">AWS</span>
+            <span class="px-3 py-1 bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] rounded-full text-sm">Kubernetes</span>
+            <span class="px-3 py-1 bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] rounded-full text-sm">Docker</span>
+            <span class="px-3 py-1 bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] rounded-full text-sm">Terraform</span>
+            <span class="px-3 py-1 bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] rounded-full text-sm">Lambda</span>
+          </div>
+        </div>
+
+        <!-- Data & Backend -->
+        <div class="text-center">
+          <h3 class="text-xl font-semibold text-[var(--color-text-primary)] mb-4">
+            Data & Backend
+          </h3>
+          <div class="flex flex-wrap justify-center gap-2">
+            <span class="px-3 py-1 bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] rounded-full text-sm">Python</span>
+            <span class="px-3 py-1 bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] rounded-full text-sm">Go</span>
+            <span class="px-3 py-1 bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] rounded-full text-sm">PostgreSQL</span>
+            <span class="px-3 py-1 bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] rounded-full text-sm">Redis</span>
+            <span class="px-3 py-1 bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] rounded-full text-sm">Kafka</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl mx-auto text-center">
+      <h3 class="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
+        Ready to Build Your AI Solution?
+      </h3>
+      <p class="text-[var(--color-text-secondary)] mb-6">
+        Let's discuss how these proven patterns and architectures can be applied to your specific use case.
+      </p>
+      <div class="space-x-4">
+        <Button variant="primary" href="/contact">
+          Start a Project
+        </Button>
+        <Button variant="outline" href="/articles">
+          Read Technical Articles
+        </Button>
+      </div>
+    </div>
+  </section>
+</MainLayout>
