@@ -1,0 +1,147 @@
+---
+import TagPill from './TagPill.astro';
+import Button from './Button.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  summary: string;
+  technologies: string[];
+  metrics?: {
+    label: string;
+    value: string;
+  }[];
+  href: string;
+  githubUrl?: string;
+  demoUrl?: string;
+  featured?: boolean;
+  status?: 'completed' | 'in-progress' | 'prototype';
+}
+
+const { 
+  title, 
+  description, 
+  summary, 
+  technologies, 
+  metrics = [],
+  href, 
+  githubUrl, 
+  demoUrl, 
+  featured = false,
+  status = 'completed'
+} = Astro.props;
+
+const statusColors = {
+  completed: 'success',
+  'in-progress': 'accent',
+  prototype: 'warning'
+} as const;
+
+const statusLabels = {
+  completed: 'Completed',
+  'in-progress': 'In Progress',
+  prototype: 'Prototype'
+} as const;
+---
+
+<div class={`group relative bg-[var(--color-bg-secondary)] border border-[var(--color-border)] rounded-lg overflow-hidden hover:border-[var(--color-border-hover)] transition-all duration-200 hover:shadow-lg ${featured ? 'ring-1 ring-[var(--color-accent)]/20' : ''}`}>
+  {featured && (
+    <div class="absolute top-4 right-4 z-10">
+      <TagPill variant="accent" size="sm">Featured</TagPill>
+    </div>
+  )}
+
+  <!-- Project Header -->
+  <div class="relative p-6 pb-4">
+    <!-- Status Badge -->
+    <div class="flex items-center justify-between mb-4">
+      <TagPill variant={statusColors[status]} size="sm">
+        {statusLabels[status]}
+      </TagPill>
+      
+      <!-- External Links -->
+      <div class="flex items-center space-x-2">
+        {githubUrl && (
+          <a
+            href={githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-[var(--color-text-tertiary)] hover:text-[var(--color-accent)] transition-colors duration-200"
+            aria-label="View source code"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"/>
+            </svg>
+          </a>
+        )}
+        {demoUrl && (
+          <a
+            href={demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-[var(--color-text-tertiary)] hover:text-[var(--color-accent)] transition-colors duration-200"
+            aria-label="View live demo"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+            </svg>
+          </a>
+        )}
+      </div>
+    </div>
+
+    <!-- Title and Description -->
+    <h3 class="text-xl font-semibold text-[var(--color-text-primary)] mb-3 group-hover:text-[var(--color-accent)] transition-colors duration-200">
+      {title}
+    </h3>
+    
+    <p class="text-[var(--color-text-secondary)] leading-relaxed mb-4">
+      {description}
+    </p>
+
+    <!-- Executive Summary -->
+    <div class="bg-[var(--color-bg-tertiary)] rounded-lg p-4 mb-4">
+      <h4 class="text-sm font-medium text-[var(--color-text-primary)] mb-2">Executive Summary</h4>
+      <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed">
+        {summary}
+      </p>
+    </div>
+
+    <!-- Metrics -->
+    {metrics.length > 0 && (
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        {metrics.map((metric) => (
+          <div class="bg-[var(--color-bg-primary)]/50 rounded-lg p-3 text-center">
+            <div class="text-lg font-semibold text-[var(--color-accent)]">{metric.value}</div>
+            <div class="text-xs text-[var(--color-text-tertiary)]">{metric.label}</div>
+          </div>
+        ))}
+      </div>
+    )}
+
+    <!-- Technologies -->
+    <div class="mb-6">
+      <h4 class="text-sm font-medium text-[var(--color-text-primary)] mb-2">Technologies</h4>
+      <div class="flex flex-wrap gap-2">
+        {technologies.map((tech) => (
+          <TagPill size="sm">{tech}</TagPill>
+        ))}
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex space-x-3">
+      <Button variant="primary" size="sm" href={href} class="flex-1">
+        View Case Study
+      </Button>
+      {demoUrl && (
+        <Button variant="outline" size="sm" href={demoUrl} class="flex-1">
+          Live Demo
+        </Button>
+      )}
+    </div>
+  </div>
+
+  <!-- Hover Effect -->
+  <div class="absolute inset-0 bg-gradient-to-r from-[var(--color-accent)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"></div>
+</div>

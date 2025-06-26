@@ -1,0 +1,163 @@
+---
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  article?: boolean;
+  canonical?: string;
+  noindex?: boolean;
+}
+
+const { 
+  title, 
+  description, 
+  image = '/og-default.jpg', 
+  article = false,
+  canonical,
+  noindex = false 
+} = Astro.props;
+
+const siteUrl = 'https://bryanconklin.com';
+const fullTitle = title === 'Home' ? 'Bryan Conklin - Gen AI Specialist Solution Architect' : `${title} | Bryan Conklin`;
+const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).toString();
+const ogImage = new URL(image, siteUrl).toString();
+---
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Primary Meta Tags -->
+  <title>{fullTitle}</title>
+  <meta name="title" content={fullTitle} />
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+  
+  <!-- Robots -->
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content={article ? "article" : "website"} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:site_name" content="Bryan Conklin" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={canonicalUrl} />
+  <meta property="twitter:title" content={fullTitle} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={ogImage} />
+  <meta property="twitter:creator" content="@bryanconklin" />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Bryan Conklin",
+      "jobTitle": "Gen AI Specialist Solution Architect",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Amazon Web Services (AWS)"
+      },
+      "url": "https://bryanconklin.com",
+      "sameAs": [
+        "https://linkedin.com/in/bryanconklin",
+        "https://github.com/bryanconklin",
+        "https://twitter.com/bryanconklin"
+      ],
+      "knowsAbout": [
+        "Artificial Intelligence",
+        "Agentic AI Systems", 
+        "Computational Neuroscience",
+        "Multi-Agent Orchestration",
+        "Cloud Architecture",
+        "Machine Learning"
+      ],
+      "description": "Gen AI Specialist Solution Architect at AWS, helping enterprises bridge the gap between AI research and real-world impact through agentic systems and computational neuroscience-inspired architectures."
+    }
+  </script>
+  
+  <!-- Theme and Accessibility -->
+  <meta name="theme-color" content="#10b981" />
+  <meta name="color-scheme" content="dark" />
+  
+  <!-- Performance Hints -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+
+<body class="bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] font-sans antialiased min-h-screen flex flex-col">
+  <!-- Skip to main content for accessibility -->
+  <a 
+    href="#main-content" 
+    class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-[var(--color-accent)] text-white px-4 py-2 rounded-md font-medium z-50"
+  >
+    Skip to main content
+  </a>
+  
+  <Navbar />
+  
+  <main id="main-content" class="flex-grow">
+    <slot />
+  </main>
+  
+  <Footer />
+
+  <!-- Analytics placeholder - replace with your actual analytics code -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script> -->
+  <!-- <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script> -->
+</body>
+</html>
+
+<style>
+  /* Screen reader only utility */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+</style>

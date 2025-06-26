@@ -1,16 +1,144 @@
 ---
+import MainLayout from '../layouts/MainLayout.astro';
+import Button from '../components/Button.astro';
+import ArticleTeaser from '../components/ArticleTeaser.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import TagPill from '../components/TagPill.astro';
 
+// Sample data based on specifications - focusing on Agentic AI and Computational Neuroscience
+const featuredArticles = [
+  {
+    title: "The Agentic AI Layered Model: A New Framework for Enterprise Systems",
+    excerpt: "Introducing a comprehensive framework for building production-ready agentic AI systems, inspired by the OSI networking model. Learn how to architect autonomous agents that scale.",
+    readTime: "15 min read",
+    publishDate: "2024-12-20",
+    tags: ["Agentic AI", "Architecture", "Framework", "Enterprise"],
+    href: "/articles/agentic-ai-layered-model",
+    featured: true,
+    level: "advanced" as const,
+    audience: "technical" as const
+  },
+  {
+    title: "Why Your AI Strategy Needs Agents, Not Just Models",
+    excerpt: "Moving beyond passive AI models to autonomous agents that take action. Discover the business case for agentic AI and how it delivers 3-5x ROI compared to traditional automation.",
+    readTime: "8 min read", 
+    publishDate: "2024-12-15",
+    tags: ["Business Strategy", "ROI", "Autonomous Systems"],
+    href: "/articles/ai-strategy-needs-agents",
+    level: "beginner" as const,
+    audience: "business" as const
+  },
+  {
+    title: "Multi-Agent Communication Patterns in Production",
+    excerpt: "Deep dive into battle-tested communication patterns for coordinating multiple AI agents at scale. Includes performance benchmarks and implementation examples.",
+    readTime: "20 min read",
+    publishDate: "2024-12-10", 
+    tags: ["Multi-Agent", "Communication", "Patterns", "Production"],
+    href: "/articles/multi-agent-communication-patterns",
+    level: "advanced" as const,
+    audience: "technical" as const
+  }
+];
+
+const featuredProjects = [
+  {
+    title: "Autonomous Trading Agent for Energy Markets",
+    description: "Developed an agentic AI system that autonomously executes energy trades based on real-time market conditions, weather data, and demand forecasts.",
+    summary: "23% increase in trading profits, 90% reduction in manual monitoring, 15ms average decision time vs 2-3 minutes human response.",
+    technologies: ["Python", "AWS Lambda", "Kinesis", "Transformer Models", "Blockchain"],
+    metrics: [
+      { label: "Profit Increase", value: "23%" },
+      { label: "Decision Time", value: "15ms" },
+      { label: "ROI First Year", value: "380%" },
+      { label: "Uptime", value: "99.97%" }
+    ],
+    href: "/projects/autonomous-trading-agent",
+    featured: true,
+    status: "completed" as const
+  },
+  {
+    title: "Neural Network Orchestration Platform",
+    description: "Built a platform for coordinating multiple neural networks using computational neuroscience principles, enabling hierarchical decision-making across agent populations.",
+    summary: "Enables coordination of 100+ AI agents simultaneously with biologically-inspired communication protocols.",
+    technologies: ["Go", "PostgreSQL", "Redis", "PyTorch", "Kubernetes"],
+    metrics: [
+      { label: "Concurrent Agents", value: "100+" },
+      { label: "Latency", value: "<50ms" },
+      { label: "Throughput", value: "10K ops/sec" }
+    ],
+    href: "/projects/neural-orchestration-platform", 
+    status: "in-progress" as const
+  }
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout 
+  title="Home"
+  description="Bryan Conklin: Applying Generative AI for Tangible Business Advantage. Gen AI Specialist Solution Architect at AWS, helping enterprises bridge the gap between AI research and real-world impact through agentic systems and computational neuroscience-inspired architectures."
+>
+  <!-- Hero Section - Simplified -->
+  <section class="py-32 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <!-- Simple Title -->
+      <h1 class="text-5xl font-bold text-[var(--color-text-primary)] mb-8">
+        Bryan Conklin
+      </h1>
+      
+      <!-- Clear Role -->
+      <p class="text-2xl text-[var(--color-accent)] mb-6">
+        Gen AI Specialist @ AWS
+      </p>
+
+      <!-- Simple Description -->
+      <p class="text-xl text-[var(--color-text-secondary)] mb-12 max-w-2xl mx-auto">
+        I help companies build AI systems that actually work in production.
+      </p>
+
+      <!-- Single Clear Action -->
+      <Button variant="primary" size="lg" href="/about">
+        Learn More About My Work
+      </Button>
+    </div>
+  </section>
+
+  <!-- Simple Navigation Section -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-secondary)]">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-[var(--color-text-primary)] mb-8">What I Do</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center p-6">
+          <h3 class="text-xl font-semibold text-[var(--color-text-primary)] mb-4">Technical Articles</h3>
+          <p class="text-[var(--color-text-secondary)] mb-6">
+            Deep technical insights on AI systems and architecture.
+          </p>
+          <Button variant="outline" href="/articles">
+            Read Articles
+          </Button>
+        </div>
+
+        <div class="text-center p-6">
+          <h3 class="text-xl font-semibold text-[var(--color-text-primary)] mb-4">Project Case Studies</h3>
+          <p class="text-[var(--color-text-secondary)] mb-6">
+            Real-world AI implementations and their results.
+          </p>
+          <Button variant="outline" href="/projects">
+            View Projects
+          </Button>
+        </div>
+
+        <div class="text-center p-6">
+          <h3 class="text-xl font-semibold text-[var(--color-text-primary)] mb-4">Contact</h3>
+          <p class="text-[var(--color-text-secondary)] mb-6">
+            Get in touch about AI strategy and implementation.
+          </p>
+          <Button variant="outline" href="/contact">
+            Get in Touch
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>
